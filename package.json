@@ -1,0 +1,26 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "aqa module 2 project",
+  "homepage": "https://github.com/Michael57e/qa-auto-engineer-javascript-project-87#readme",
+  "bugs": {
+    "url": "https://github.com/Michael57e/qa-auto-engineer-javascript-project-87/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Michael57e/qa-auto-engineer-javascript-project-87.git"
+  },
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "license": "ISC",
+  "author": "Michael57e",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "commander": "^14.0.2"
+  }
+}
