@@ -1,19 +1,18 @@
-import fs from 'fs'
-import path from 'path'
-
-const readFile = (filepath) => {
-  const absolutePath = path.resolve(process.cwd(), filepath)
-  return fs.readFileSync(absolutePath, 'utf-8')
-}
+import { readFile, getExtension } from './utils.js'
+import parse from './parsers.js'
+import buildDiff from './buildDiff.js'
 
 export default function genDiff(filepath1, filepath2) {
   const data1 = readFile(filepath1)
   const data2 = readFile(filepath2)
 
-  return [
-    '--- File 1 ---',
-    data1,
-    '--- File 2 ---',
-    data2,
-  ].join('\n')
+  const ext1 = getExtension(filepath1)
+  const ext2 = getExtension(filepath2)
+
+  const obj1 = parse(data1, ext1)
+  const obj2 = parse(data2, ext2)
+
+  const diff = buildDiff(obj1, obj2)
+
+  return JSON.stringify(diff, null, 2)
 }
