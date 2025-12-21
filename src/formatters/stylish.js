@@ -30,6 +30,6 @@ const stylish = (diff) => {
   })
 
   return `{\n${lines.join('\n')}\n}`
-};
+}
 
 export default stylish

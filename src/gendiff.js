@@ -24,7 +24,7 @@ const genDiff = (filepath1, filepath2) => {
         type: 'changed',
         oldValue: obj1[key],
         newValue: obj2[key],
-      };
+      }
     }
   }
 
@@ -45,4 +45,3 @@ const genDiff = (filepath1, filepath2) => {
 }
 
 export default genDiff
-

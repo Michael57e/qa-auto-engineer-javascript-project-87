@@ -38,4 +38,3 @@ describe('gendiff', () => {
     expect(result).toBe(expected)
   })
 })
-
