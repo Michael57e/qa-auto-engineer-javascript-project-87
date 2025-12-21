@@ -2,10 +2,10 @@ import path from 'path'
 import fs from 'fs'
 import gendiff from '../src/index.js'
 
-const getFixturePath = (filename) =>
+const getFixturePath = filename =>
   path.join(__dirname, '..', '__fixtures__', filename)
 
-const readExpected = (filename) =>
+const readExpected = filename =>
   fs.readFileSync(getFixturePath(filename), 'utf8').trimEnd()
 
 describe('gendiff', () => {

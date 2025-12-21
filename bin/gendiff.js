@@ -14,7 +14,8 @@ program
     try {
       const result = genDiff(filepath1, filepath2, options.format)
       console.log(result)
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error:', error.message)
       process.exit(1)
     }
