@@ -40,10 +40,42 @@ gendiff __fixtures__/file1.json __fixtures__/file2.json
 #### Пример работы:
 
 ```
-gendiff __fixtures__/file1.json __fixtures__/file2.json --format stylish
+gendiff __fixtures__/file1.json __fixtures__/file2.json --format plain
 ```
+
+Вывод plain:
+```
+Property 'follow' was removed
+Property 'proxy' was removed
+Property 'timeout' was updated. From 50 to 20
+Property 'verbose' was added with value: true
+```
+
 ### Пример работы пакета
 
 Смотри демонстрацию работы пакета в терминале:
 
 [![asciicast](https://asciinema.org/a/4Z3BMuW1K9Nz6nV95HWtmcTag.svg)](https://asciinema.org/a/4Z3BMuW1K9Nz6nV95HWtmcTag)
+
+
+### Пример работы:
+
+```
+gendiff __fixtures__/file1.json __fixtures__/file2.json --format json
+```
+
+Вывод json:
+```
+{
+  "follow": { "type": "removed", "value": false },
+  "host": { "type": "unchanged", "value": "hexlet.io" },
+  "proxy": { "type": "removed", "value": "123.234.53.22" },
+  "timeout": { "type": "changed", "oldValue": 50, "newValue": 20 },
+  "verbose": { "type": "added", "value": true }
+}
+```
+### Пример работы пакета
+
+Смотри демонстрацию работы пакета в терминале:
+
+[![asciicast](https://asciinema.org/a/QZi9HKl4mXOUAMnlIRafqaa8R.svg)](https://asciinema.org/a/QZi9HKl4mXOUAMnlIRafqaa8R)
