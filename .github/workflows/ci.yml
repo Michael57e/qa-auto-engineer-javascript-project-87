@@ -1,4 +1,4 @@
 - name: SonarCloud Scan
   uses: SonarSource/sonarcloud-github-action@v2
   env:
-    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    SONAR_TOKEN: ${{ 9901119c45573d1de07a0e5ef27ffc5aaa1449ce }}
