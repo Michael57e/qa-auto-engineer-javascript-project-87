@@ -1,15 +1,16 @@
-import fs from 'fs'
-// import path from 'path' // что это? можно убрать
 import stylish from './stylish.js'
+import parse from './parsers.js'
+import { readFile, getExtension } from './utils.js'
 
-const parseJSON = (filepath) => {
-  const content = fs.readFileSync(filepath, 'utf8')
-  return JSON.parse(content)
-}
+const genDiff = (filepath1, filepath2) => {
+  const data1 = readFile(filepath1)
+  const data2 = readFile(filepath2)
 
-export const genDiff = (filepath1, filepath2) => {
-  const obj1 = parseJSON(filepath1)
-  const obj2 = parseJSON(filepath2)
+  const ext1 = getExtension(filepath1)
+  const ext2 = getExtension(filepath2)
+
+  const obj1 = parse(data1, ext1)
+  const obj2 = parse(data2, ext2)
 
   const diff = {}
 
@@ -23,7 +24,7 @@ export const genDiff = (filepath1, filepath2) => {
         type: 'changed',
         oldValue: obj1[key],
         newValue: obj2[key],
-      }
+      };
     }
   }
 
@@ -42,3 +43,6 @@ export const genDiff = (filepath1, filepath2) => {
 
   return stylish(sortedDiff)
 }
+
+export default genDiff
+

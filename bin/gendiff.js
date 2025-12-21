@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
-import { genDiff } from '../src/gendiff.js'
+import genDiff from '../src/gendiff.js'
 
 const program = new Command()
 
@@ -17,6 +17,6 @@ program
       console.error('Error:', error.message)
       process.exit(1)
     }
-  })
+  });
 
 program.parse(process.argv)

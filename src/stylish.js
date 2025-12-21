@@ -1,5 +1,3 @@
-//const indent = (depth) => '  '.repeat(depth) - убрать!
-
 export default (diff) => {
   const lines = Object.entries(diff).flatMap(([key, info]) => {
     const { type } = info
