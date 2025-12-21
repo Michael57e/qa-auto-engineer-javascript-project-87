@@ -25,8 +25,25 @@ gendiff __fixtures__/file1.json __fixtures__/file2.json
 }
 ```
 
-## Пример работы пакета
+### Пример работы пакета
 
 Смотри демонстрацию работы пакета в терминале:
 
 [![asciicast](https://asciinema.org/a/bYM7wqcV11xqAi5BIJGuglLL7.svg)](https://asciinema.org/a/bYM7wqcV11xqAi5BIJGuglLL7)
+
+
+
+### gendiff
+
+Сравнение двух файлов конфигурации в форматах JSON или YAML.
+
+#### Пример работы:
+
+```
+gendiff __fixtures__/file1.json __fixtures__/file2.json --format stylish
+```
+### Пример работы пакета
+
+Смотри демонстрацию работы пакета в терминале:
+
+[![asciicast](https://asciinema.org/a/4Z3BMuW1K9Nz6nV95HWtmcTag.svg)](https://asciinema.org/a/4Z3BMuW1K9Nz6nV95HWtmcTag)

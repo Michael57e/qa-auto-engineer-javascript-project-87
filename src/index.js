@@ -1,5 +1,6 @@
 import buildDiff from './buildDiff.js'
-import stylish from './stylish.js'
+import stylish from './formatters/stylish.js'
+import plain from './formatters/plain.js'
 import parse from './parsers.js'
 import { readFile, getExtension } from './utils.js'
 
@@ -15,9 +16,8 @@ export default (filepath1, filepath2, format = 'stylish') => {
 
   const diff = buildDiff(obj1, obj2)
 
-  if (format === 'stylish') {
-    return stylish(diff)
-  }
+  if (format === 'stylish') return stylish(diff)
+  if (format === 'plain') return plain(diff)
 
   return diff
 }
