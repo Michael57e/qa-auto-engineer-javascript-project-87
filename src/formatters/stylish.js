@@ -22,7 +22,7 @@ const stylish = (diff) => {
       case 'changed':
         return [
           `${indent}- ${key}: ${stringify(node.oldValue)}`,
-          `${indent}+ ${key}: ${stringify(node.newValue)}`
+          `${indent}+ ${key}: ${stringify(node.newValue)}`,
         ].join('\n')
       default:
         return ''
