@@ -4,3 +4,29 @@
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=Michael57e_qa-auto-engineer-javascript-project-87&metric=alert_status)](https://sonarcloud.io/dashboard?id=Michael57e_qa-auto-engineer-javascript-project-87)
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Michael57e_qa-auto-engineer-javascript-project-87&metric=coverage)](https://sonarcloud.io/dashboard?id=Michael57e_qa-auto-engineer-javascript-project-87)
+
+
+## Пример использования:
+
+```
+gendiff __fixtures__/file1.json __fixtures__/file2.json
+```
+
+### Результат:
+
+```
+{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}
+```
+
+## Пример работы пакета
+
+Смотри демонстрацию работы пакета в терминале:
+
+[![asciicast](https://asciinema.org/a/bYM7wqcV11xqAi5BIJGuglLL7.svg)](https://asciinema.org/a/bYM7wqcV11xqAi5BIJGuglLL7)
