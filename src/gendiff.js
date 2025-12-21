@@ -17,9 +17,11 @@ const genDiff = (filepath1, filepath2) => {
   for (const key of Object.keys(obj1)) {
     if (!Object.hasOwn(obj2, key)) {
       diff[key] = { type: 'removed', value: obj1[key] }
-    } else if (Object.is(obj1[key], obj2[key])) {
+    }
+    else if (Object.is(obj1[key], obj2[key])) {
       diff[key] = { type: 'unchanged', value: obj1[key] }
-    } else {
+    }
+    else {
       diff[key] = {
         type: 'changed',
         oldValue: obj1[key],
