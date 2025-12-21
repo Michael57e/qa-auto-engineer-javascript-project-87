@@ -1,27 +1,20 @@
-export default (diff) => {
-  const lines = Object.entries(diff).flatMap(([key, info]) => {
-    const { type } = info
-
-    switch (type) {
-      case 'removed':
-        return [`  - ${key}: ${info.value}`]
-
+const stylish = (diff) => {
+  const lines = Object.entries(diff).map(([key, node]) => {
+    switch (node.type) {
       case 'added':
-        return [`  + ${key}: ${info.value}`]
-
+        return `+ ${key}: ${node.value}`
+      case 'removed':
+        return `- ${key}: ${node.value}`
       case 'unchanged':
-        return [`    ${key}: ${info.value}`]
-
+        return `  ${key}: ${node.value}`
       case 'changed':
-        return [
-          `  - ${key}: ${info.oldValue}`,
-          `  + ${key}: ${info.newValue}`,
-        ];
-
+        return [`- ${key}: ${node.oldValue}`, `+ ${key}: ${node.newValue}`].join('\n')
       default:
-        throw new Error(`Unknown type: ${type}`)
+        return ''
     }
   })
 
-  return ['{', ...lines, '}'].join('\n')
+  return `{\n${lines.join('\n')}\n}`
 }
+
+export default stylish
