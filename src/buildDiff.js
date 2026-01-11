@@ -13,14 +13,14 @@ export default function buildDiff(obj1, obj2) {
     else if (obj1[key] === obj2[key]) {
       diff[key] = {
         type: 'unchanged',
-        value: obj1[key]
+        value: obj1[key],
       }
     }
     else {
-      diff[key] = { 
+      diff[key] = {
         type: 'changed',
         oldValue: obj1[key],
-        newValue: obj2[key]
+        newValue: obj2[key],
       }
     }
   })
