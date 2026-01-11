@@ -1,5 +1,5 @@
 import buildDiff from './buildDiff.js'
-import formatters from './formatters/default.js'
+import formatters from './formatters/index.js'
 import parse from './parsers.js'
 import { readFile, getExtension } from './utils.js'
 

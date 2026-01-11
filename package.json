@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@eslint/json": "^0.14.0",
-    "eslint": "^9.39.2"
+    "eslint": "^9.39.2",
+    "jest": "^29.7.0"
   }
 }

@@ -1,4 +1,36 @@
-- name: SonarCloud Scan
-  uses: SonarSource/sonarcloud-github-action@v2
-  env:
-    SONAR_TOKEN: ${{ 9901119c45573d1de07a0e5ef27ffc5aaa1449ce }}
+name: CI
+
+# Запускаем workflow при пуше в main и при открытии pull request
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-and-lint:
+    name: Run tests and lint
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Клонируем репозиторий
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      # 2) Настраиваем Node.js среду
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      # 3) Устанавливаем зависимости
+      - name: Install dependencies
+        run: npm ci
+
+      # 4) Запускаем линтер (если есть npm script "lint")
+      - name: Run linter
+        run: npm run lint
+
+      # 5) Запускаем Jest‑тесты
+      - name: Run tests
+        run: npm test
