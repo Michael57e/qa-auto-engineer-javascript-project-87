@@ -18,8 +18,7 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "lint": "eslint ."
+    "test": "npx jest"
   },
   "dependencies": {
     "commander": "^14.0.2",
