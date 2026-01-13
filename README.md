@@ -1,9 +1,46 @@
+# Gendiff — утилита для сравнения конфигурационных файлов
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Michael57e/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Michael57e/qa-auto-engineer-javascript-project-87/actions)
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Michael57e_qa-auto-engineer-javascript-project-87&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Michael57e_qa-auto-engineer-javascript-project-87)
 
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Michael57e_qa-auto-engineer-javascript-project-87&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Michael57e_qa-auto-engineer-javascript-project-87)
+
+## Описание проекта
+
+**Gendiff** - это консольная утилита для сравнения двух конфигурационных файлов. Она показывает различия между файлами в удобном для чтения виде и поддерживает несколько форматов вывода.
+
+Поддерживаемые форматы входных файлов:
+* JSON
+* YAML/YML
+
+## Установка
+
+#### Требования
+* Node.js версии 18 и выше
+* npm
+
+Склонируйте репозиторий:
+```
+git clone git@github.com:Michael57e/qa-auto-engineer-javascript-project-87.git
+cd qa-auto-engineer-javascript-project-87
+```
+
+Из корневой папки проекта установить зависимости:
+```
+npm install
+```
+Запустить проект:
+```
+npm start
+```
+
+Глобальная установка (опционально)
+```
+npm link
+```
+*После этого утилита будет доступна как команда gendiff из любого места в системе.*
 
 ## Пример использования:
 
@@ -78,3 +115,28 @@ gendiff __fixtures__/file1.json __fixtures__/file2.json --format json
 Смотри демонстрацию работы пакета в терминале:
 
 [![asciicast](https://asciinema.org/a/QZi9HKl4mXOUAMnlIRafqaa8R.svg)](https://asciinema.org/a/QZi9HKl4mXOUAMnlIRafqaa8R)
+
+
+### Что реализовано в проекте
+
+* CLI-утилита для сравнения конфигурационных файлов
+* Парсинг JSON и YAML файлов
+* Форматирование результата в трёх форматах (json, yaml, yml)
+* Автоматические тесты (Jest)
+* Проверка качества кода и покрытия (GitHub Actions, SonarCloud)
+
+### Используемые технологии
+
+* JavaScript
+* Node.js
+* Commander.js
+* js-yaml
+* Jest
+* ESLint
+* GitHub Actions
+* SonarCloud
+
+
+#### Примечания
+
+Проект выполнен в рамках обучения в школе Hexlet
