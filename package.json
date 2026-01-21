@@ -18,8 +18,9 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest",
-    "lint": "eslint ."
+    "test": "jest --runInBand --detectOpenHandles",
+    "lint": "eslint . --ext .js",
+    "prepare": "npm install"
   },
   "dependencies": {
     "commander": "^14.0.2",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/json": "^0.14.0",
-    "eslint": "^9.39.2"
+    "eslint": "^9.39.2",
+    "jest": "^29.0.0"
   }
 }

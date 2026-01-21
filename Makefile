@@ -1,14 +1,10 @@
 install:
-	npm ci
-
-lint:
-	npx eslint .
+	npm install
 
 test:
-	npx jest
+	npm test
 
-test-coverage:
-	npx jest --coverage
+lint:
+	npm run lint
 
-publish:
-	npm publish --dry-run
+ci: install lint test

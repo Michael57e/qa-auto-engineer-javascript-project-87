@@ -5,7 +5,7 @@
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Michael57e_qa-auto-engineer-javascript-project-87&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Michael57e_qa-auto-engineer-javascript-project-87)
 
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Michael57e_qa-auto-engineer-javascript-project-87&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Michael57e_qa-auto-engineer-javascript-project-87)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Michael57e_qa-auto-engineer-javascript-project-87&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Michael57e_qa-auto-engineer-javascript-project-87)
 
 ## Описание проекта
 
