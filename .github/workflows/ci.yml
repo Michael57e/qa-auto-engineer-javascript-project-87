@@ -2,29 +2,34 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
+    branches: ["main"]
 
 jobs:
-  build:
-
+  test-lint-sonar:
+    name: Run tests and lint
     runs-on: ubuntu-latest
 
     steps:
+      # Клонируем репозиторий
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      # Устанавливаем Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: 18
 
+      # Устанавливаем зависимости
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Lint
+      # Запускаем линтер
+      - name: Run linter
         run: npm run lint
 
+      # Запускаем тесты
       - name: Run tests
         run: npm test
