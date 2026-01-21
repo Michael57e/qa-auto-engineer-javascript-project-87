@@ -8,7 +8,7 @@ on:
 
 jobs:
   test-lint-sonar:
-    name: Run tests and lint
+    name: Run tests, lint and sonar
     runs-on: ubuntu-latest
 
     steps:
@@ -33,3 +33,10 @@ jobs:
       # Запускаем тесты
       - name: Run tests
         run: npm test
+
+      # Запуск SonarCloud
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ 9901119c45573d1de07a0e5ef27ffc5aaa1449ce }}
+
