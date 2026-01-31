@@ -19,8 +19,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest --runInBand --detectOpenHandles",
-    "lint": "eslint . --ext .js",
-    "prepare": "npm install"
+    "lint": "eslint . --ext .js"
   },
   "dependencies": {
     "commander": "^14.0.2",
