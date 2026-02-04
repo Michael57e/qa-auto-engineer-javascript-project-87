@@ -1,13 +1,10 @@
 install:
-	npm install
-
+	npm ci
+publish:
+	npm publish --dry-run
 test:
 	npm test
-
-lint:
-	npm run lint
-
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8
-
-ci: install lint test
+lint:
+	npx eslint .
