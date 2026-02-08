@@ -34,7 +34,7 @@ jobs:
           args: >
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             -Dsonar.projectKey=michael57e_qa-auto-engineer-javascript-project-87
-            -Dsonar.organization=michael57e
+            -Dsonar.organization=Michael Emtsev
             -Dsonar.sources=src
             -Dsonar.tests=__tests__
             -Dsonar.test.inclusions=**/*.test.js
