@@ -1,8 +1,8 @@
 import genDiff from '../src/index.js'
 import path from 'path'
 
-const filepath1 = path.join('__tests__', 'fixtures', 'file1.json')
-const filepath2 = path.join('__tests__', 'fixtures', 'file2.json')
+const filepath1 = path.join('fixtures', 'file1.json')
+const filepath2 = path.join('fixtures', 'file2.json')
 
 test('json format', () => {
   const diff = genDiff(filepath1, filepath2, 'json')
