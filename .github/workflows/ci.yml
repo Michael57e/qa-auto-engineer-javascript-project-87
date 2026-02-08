@@ -31,8 +31,8 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           projectBaseDir: .
+          token: ${{ secrets.SONAR_TOKEN }}
           args: >
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             -Dsonar.projectKey=michael57e_qa-auto-engineer-javascript-project-87
             -Dsonar.organization=michael57e
             -Dsonar.sources=src
