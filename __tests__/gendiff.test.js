@@ -2,39 +2,43 @@ import path from 'path'
 import fs from 'fs'
 import gendiff from '../src/index.js'
 
-const getFixturePath = filename =>
+const getFixturePath = (filename) =>
   path.join(__dirname, '..', '__fixtures__', filename)
 
-const readExpected = filename =>
+const readExpected = (filename) =>
   fs.readFileSync(getFixturePath(filename), 'utf8').trimEnd()
 
 describe('gendiff', () => {
-  const expected = readExpected('expected.txt')
+  const stylish = readExpected('expected-stylish.txt')
+  const plain = readExpected('expected-plain.txt')
+  const json = readExpected('expected-json.txt')
 
-  test('compares two JSON files', () => {
-    const filepath1 = getFixturePath('file1.json')
-    const filepath2 = getFixturePath('file2.json')
+  const json1 = getFixturePath('file1.json')
+  const json2 = getFixturePath('file2.json')
 
-    const result = gendiff(filepath1, filepath2)
+  const yml1 = getFixturePath('file1.yml')
+  const yml2 = getFixturePath('file2.yml')
 
-    expect(result).toBe(expected)
+  const yaml1 = getFixturePath('file1.yaml')
+  const yaml2 = getFixturePath('file2.yaml')
+
+  test('stylish format (json)', () => {
+    expect(gendiff(json1, json2)).toBe(stylish)
   })
 
-  test('compares two YML files', () => {
-    const filepath1 = getFixturePath('file1.yml')
-    const filepath2 = getFixturePath('file2.yml')
-
-    const result = gendiff(filepath1, filepath2)
-
-    expect(result).toBe(expected)
+  test('stylish format (yml)', () => {
+    expect(gendiff(yml1, yml2)).toBe(stylish)
   })
 
-  test('compares two YAML files', () => {
-    const filepath1 = getFixturePath('file1.yaml')
-    const filepath2 = getFixturePath('file2.yaml')
+  test('stylish format (yaml)', () => {
+    expect(gendiff(yaml1, yaml2)).toBe(stylish)
+  })
 
-    const result = gendiff(filepath1, filepath2)
+  test('plain format', () => {
+    expect(gendiff(json1, json2, 'plain')).toBe(plain)
+  })
 
-    expect(result).toBe(expected)
+  test('json format', () => {
+    expect(gendiff(json1, json2, 'json')).toBe(json)
   })
 })
