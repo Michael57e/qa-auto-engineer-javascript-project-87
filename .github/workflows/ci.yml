@@ -41,7 +41,7 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.projectKey=michael57e_qa-auto-engineer-javascript-project-87
+            -Dsonar.projectKey=Michael57e_qa-auto-engineer-javascript-project-87
             -Dsonar.organization=michael57e
             -Dsonar.sources=src
             -Dsonar.tests=__tests__
