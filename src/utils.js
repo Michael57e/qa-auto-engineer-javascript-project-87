@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 export const getExtension = filepath =>
-  path.extname(filepath).toLowerCase()
+  path.extname(filepath).toLowerCase().slice(1)
 
 export const readFile = (filepath) => {
   const fullPath = path.resolve(process.cwd(), filepath)
