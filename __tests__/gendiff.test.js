@@ -2,10 +2,10 @@ import path from 'path'
 import fs from 'fs'
 import genDiff from '../src/index.js'
 
-const getFixturePath = (filename) =>
+const getFixturePath = filename =>
   path.join('fixtures', filename)
 
-const readFile = (filename) =>
+const readFile = filename =>
   fs.readFileSync(getFixturePath(filename), 'utf-8')
 
 const expectedStylish = readFile('expected-stylish.txt')
