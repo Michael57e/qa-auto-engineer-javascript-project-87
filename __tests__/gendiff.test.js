@@ -1,48 +1,45 @@
 import path from 'path'
 import fs from 'fs'
-import { fileURLToPath } from 'url'
-import gendiff from '../src/index.js'
+import genDiff from '../src/index.js'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const getFixturePath = (filename) =>
+  path.join('__fixtures__', filename)
 
-const getFixturePath = filename =>
-  path.join(__dirname, '..', 'fixtures', filename)
+const readFile = (filename) =>
+  fs.readFileSync(getFixturePath(filename), 'utf-8')
 
-const readExpected = filename =>
-  fs.readFileSync(getFixturePath(filename), 'utf8').trimEnd()
+const expectedStylish = readFile('expectedStylish.txt')
+const expectedPlain = readFile('expectedPlain.txt')
+const expectedJson = readFile('expectedJson.txt')
 
 describe('gendiff', () => {
-  const stylish = readExpected('expected-stylish.txt')
-  const plain = readExpected('expected-plain.txt')
-  const json = readExpected('expected-json.txt')
+  const formats = ['json', 'yml', 'yaml']
 
-  const json1 = getFixturePath('file1.json')
-  const json2 = getFixturePath('file2.json')
+  test.each(formats)('compare %s files with default formatter', (format) => {
+    const file1 = getFixturePath(`file1.${format}`)
+    const file2 = getFixturePath(`file2.${format}`)
 
-  const yml1 = getFixturePath('file1.yml')
-  const yml2 = getFixturePath('file2.yml')
-
-  const yaml1 = getFixturePath('file1.yaml')
-  const yaml2 = getFixturePath('file2.yaml')
-
-  test('stylish format (json)', () => {
-    expect(gendiff(json1, json2)).toBe(stylish)
+    expect(genDiff(file1, file2)).toEqual(expectedStylish)
   })
 
-  test('stylish format (yml)', () => {
-    expect(gendiff(yml1, yml2)).toBe(stylish)
+  test.each(formats)('compare %s files with stylish formatter', (format) => {
+    const file1 = getFixturePath(`file1.${format}`)
+    const file2 = getFixturePath(`file2.${format}`)
+
+    expect(genDiff(file1, file2, 'stylish')).toEqual(expectedStylish)
   })
 
-  test('stylish format (yaml)', () => {
-    expect(gendiff(yaml1, yaml2)).toBe(stylish)
+  test.each(formats)('compare %s files with plain formatter', (format) => {
+    const file1 = getFixturePath(`file1.${format}`)
+    const file2 = getFixturePath(`file2.${format}`)
+
+    expect(genDiff(file1, file2, 'plain')).toEqual(expectedPlain)
   })
 
-  test('plain format', () => {
-    expect(gendiff(json1, json2, 'plain')).toBe(plain)
-  })
+  test.each(formats)('compare %s files with json formatter', (format) => {
+    const file1 = getFixturePath(`file1.${format}`)
+    const file2 = getFixturePath(`file2.${format}`)
 
-  test('json format', () => {
-    expect(gendiff(json1, json2, 'json')).toBe(json)
+    expect(genDiff(file1, file2, 'json')).toEqual(expectedJson)
   })
 })

@@ -1,4 +1,4 @@
-import genDiff from '../src/index.js'
+/*import genDiff from '../src/index.js'
 import path from 'path'
 
 const filepath1 = path.join('fixtures', 'file1.json')
@@ -16,3 +16,4 @@ test('json format', () => {
     verbose: { type: 'added', value: true },
   })
 })
+*/

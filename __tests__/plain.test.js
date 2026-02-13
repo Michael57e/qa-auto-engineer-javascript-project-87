@@ -1,4 +1,4 @@
-import genDiff from '../src/index.js'
+/*import genDiff from '../src/index.js'
 import path from 'path'
 
 const filepath1 = path.join('fixtures', 'file1.json')
@@ -14,3 +14,4 @@ Property 'timeout' was updated. From 50 to 20
 Property 'verbose' was added with value: true`,
   )
 })
+*/
