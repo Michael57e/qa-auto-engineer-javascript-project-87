@@ -5,7 +5,7 @@ import { readFile, getExtension } from './utils.js'
 
 const readData = (filepath) => {
   const data = readFile(filepath)
-  const format = getExtension(filepath).slice(1)
+  const format = getExtension(filepath)
   return parse(data, format)
 }
 
