@@ -43,3 +43,26 @@ describe('gendiff', () => {
     expect(genDiff(file1, file2, 'json')).toEqual(expectedJson)
   })
 })
+
+test('throws error on unknown input format', () => {
+  const file1 = getFixturePath('file1.txt')
+  const file2 = getFixturePath('file2.txt')
+
+  expect(() => genDiff(file1, file2))
+    .toThrow('Unknown format')
+})
+
+test('throws error on unknown formatter', () => {
+  const file1 = getFixturePath('file1.json')
+  const file2 = getFixturePath('file2.json')
+
+  expect(() => genDiff(file1, file2, 'html'))
+    .toThrow()
+})
+
+test('stylish formatter with nested objects', () => {
+  const nested1 = getFixturePath('nested1.json')
+  const nested2 = getFixturePath('nested2.json')
+
+  expect(genDiff(nested1, nested2)).toBeDefined()
+})
