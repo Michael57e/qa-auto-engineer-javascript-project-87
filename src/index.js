@@ -3,17 +3,17 @@ import formatters from './formatters/index.js'
 import parse from './parsers.js'
 import { readFile, getExtension } from './utils.js'
 
+const readData = (filepath) => {
+  const data = readFile(filepath)
+  const format = getExtension(filepath).slice(1)
+  return parse(data, format)
+}
+
 export default (filepath1, filepath2, format = 'stylish') => {
-  const data1 = readFile(filepath1)
-  const data2 = readFile(filepath2)
+  const data1 = readData(filepath1)
+  const data2 = readData(filepath2)
 
-  const ext1 = getExtension(filepath1)
-  const ext2 = getExtension(filepath2)
-
-  const parsedData1 = parse(data1, ext1)
-  const parsedData2 = parse(data2, ext2)
-
-  const diff = buildDiff(parsedData1, parsedData2)
+  const diff = buildDiff(data1, data2)
 
   return formatters(diff, format)
 }
