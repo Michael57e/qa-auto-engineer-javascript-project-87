@@ -10,10 +10,10 @@ export default (filepath1, filepath2, format = 'stylish') => {
   const ext1 = getExtension(filepath1)
   const ext2 = getExtension(filepath2)
 
-  const obj1 = parse(data1, ext1)
-  const obj2 = parse(data2, ext2)
+  const parsedData1 = parse(data1, ext1)
+  const parsedData2 = parse(data2, ext2)
 
-  const diff = buildDiff(obj1, obj2)
+  const diff = buildDiff(parsedData1, parsedData2)
 
   return formatters(diff, format)
 }

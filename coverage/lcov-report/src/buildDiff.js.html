@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -93,54 +93,54 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">56x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function <span class="fstat-no" title="function not covered" >buildDiff(</span>obj1, obj2) {
-  const keys = <span class="cstat-no" title="statement not covered" >Array.from(new Set([...Object.keys(obj1), ...Object.keys(obj2)])).sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >a.localeCompare(b))</span></span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function buildDiff(obj1, obj2) {
+  const keys = Array.from(new Set([...Object.keys(obj1), ...Object.keys(obj2)])).sort((a, b) =&gt; a.localeCompare(b))
 &nbsp;
-  const diff = <span class="cstat-no" title="statement not covered" >{}</span>
+  const diff = {}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  keys.forEach(<span class="fstat-no" title="function not covered" >(k</span>ey) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (!Object.hasOwn(obj2, key)) {</span>
-<span class="cstat-no" title="statement not covered" >      diff[key] = { type: 'removed', value: obj1[key] }</span>
+  keys.forEach((key) =&gt; {
+    if (!Object.hasOwn(obj2, key)) {
+      diff[key] = { type: 'removed', value: obj1[key] }
     }
-    else <span class="cstat-no" title="statement not covered" >if (!Object.hasOwn(obj1, key)) {</span>
-<span class="cstat-no" title="statement not covered" >      diff[key] = { type: 'added', value: obj2[key] }</span>
+    else if (!Object.hasOwn(obj1, key)) {
+      diff[key] = { type: 'added', value: obj2[key] }
     }
-    else <span class="cstat-no" title="statement not covered" >if (obj1[key] === obj2[key]) {</span>
-<span class="cstat-no" title="statement not covered" >      diff[key] = {</span>
+    else if (obj1[key] === obj2[key]) {
+      diff[key] = {
         type: 'unchanged',
         value: obj1[key],
       }
     }
     else {
-<span class="cstat-no" title="statement not covered" >      diff[key] = {</span>
+      diff[key] = {
         type: 'changed',
         oldValue: obj1[key],
         newValue: obj2[key],
@@ -148,7 +148,7 @@
     }
   })
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return diff</span>
+  return diff
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -157,7 +157,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-12T19:24:14.939Z
+                at 2026-02-13T17:55:23.949Z
             </div>
         <script src="../prettify.js"></script>
         <script>
