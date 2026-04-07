@@ -42,5 +42,4 @@ jobs:
           projectBaseDir: .
           args: >
             -Dsonar.branch.name=main
-            -X
 
