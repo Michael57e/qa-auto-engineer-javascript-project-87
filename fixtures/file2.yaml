@@ -1,4 +1,6 @@
----
-timeout: 20
-verbose: True
-host: hexlet.io
+common:
+  setting1: Value 1
+  setting3: true
+
+group1:
+  baz: bars

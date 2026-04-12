@@ -1,4 +1,4 @@
-const isObject = (value) =>
+const isObject = value =>
   value !== null && typeof value === 'object' && !Array.isArray(value)
 
 export default function buildDiff(obj1, obj2) {
