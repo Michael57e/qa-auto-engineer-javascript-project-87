@@ -2,44 +2,35 @@ const stringify = (value) => {
   if (typeof value === 'object' && value !== null) {
     return '[complex value]'
   }
+
   if (typeof value === 'string') {
     return `'${value}'`
   }
-  return value
+
+  return String(value)
 }
 
 const plain = (diff, parent = '') => {
-  const lines = []
-
-  for (const key of Object.keys(diff)) {
-    const property = parent ? `${parent}.${key}` : key
-    const node = diff[key]
+  const lines = diff.flatMap((node) => {
+    const property = parent ? `${parent}.${node.key}` : node.key
 
     switch (node.type) {
       case 'added':
-        lines.push(
-          `Property '${property}' was added with value: ${stringify(node.value)}`,
-        )
-        break
+        return `Property '${property}' was added with value: ${stringify(node.value)}`
 
       case 'removed':
-        lines.push(`Property '${property}' was removed`)
-        break
+        return `Property '${property}' was removed`
 
       case 'changed':
-        lines.push(
-          `Property '${property}' was updated. From ${stringify(node.oldValue)} to ${stringify(node.newValue)}`,
-        )
-        break
+        return `Property '${property}' was updated. From ${stringify(node.oldValue)} to ${stringify(node.newValue)}`
 
       case 'nested':
-        lines.push(plain(node.children, property))
-        break
+        return plain(node.children, property)
 
       default:
-        break
+        return []
     }
-  }
+  })
 
   return lines.join('\n')
 }
