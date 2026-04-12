@@ -1,46 +1,60 @@
-const getIndent = (depth, symbol = ' ', spacesCount = 4) =>
-  symbol.repeat(depth * spacesCount - 2)
+const replacer = ' '
+const spacesCount = 4
+
+const getIndent = (depth) => replacer.repeat(depth * spacesCount)
+const getBracketIndent = (depth) => replacer.repeat(depth * spacesCount - spacesCount)
 
 const stringify = (value, depth) => {
-  if (value !== null && typeof value === 'object') {
-    const lines = Object.entries(value).map(
-      ([key, val]) =>
-        `${getIndent(depth + 1)}  ${key}: ${stringify(val, depth + 1)}`,
-    )
-
-    return ['{', ...lines, `${getIndent(depth)}  }`].join('\n')
+  if (value === null || typeof value !== 'object') {
+    return String(value)
   }
 
-  return String(value)
+  const lines = Object.entries(value).map(
+    ([key, val]) =>
+      `${getIndent(depth + 1)}${key}: ${stringify(val, depth + 1)}`,
+  )
+
+  return [
+    '{',
+    ...lines,
+    `${getBracketIndent(depth + 1)}}`,
+  ].join('\n')
 }
 
-const iter = (nodes, depth = 1) => {
+const iter = (nodes, depth = 0) => {
   const lines = nodes.flatMap((node) => {
+    const indent = getIndent(depth + 1)
+    const signIndent = replacer.repeat((depth + 1) * spacesCount - 2)
+
     switch (node.type) {
       case 'added':
-        return `${getIndent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`
+        return `${signIndent}+ ${node.key}: ${stringify(node.value, depth + 1)}`
 
       case 'removed':
-        return `${getIndent(depth)}- ${node.key}: ${stringify(node.value, depth)}`
+        return `${signIndent}- ${node.key}: ${stringify(node.value, depth + 1)}`
 
       case 'unchanged':
-        return `${getIndent(depth)}  ${node.key}: ${stringify(node.value, depth)}`
+        return `${indent}${node.key}: ${stringify(node.value, depth + 1)}`
 
       case 'changed':
         return [
-          `${getIndent(depth)}- ${node.key}: ${stringify(node.oldValue, depth)}`,
-          `${getIndent(depth)}+ ${node.key}: ${stringify(node.newValue, depth)}`,
+          `${signIndent}- ${node.key}: ${stringify(node.oldValue, depth + 1)}`,
+          `${signIndent}+ ${node.key}: ${stringify(node.newValue, depth + 1)}`,
         ]
 
       case 'nested':
-        return `${getIndent(depth)}  ${node.key}: ${iter(node.children, depth + 1)}`
+        return `${indent}${node.key}: ${iter(node.children, depth + 1)}`
 
       default:
-        throw new Error(`Unknown type: ${node.type}`)
+        throw new Error(`Unknown node type: ${node.type}`)
     }
   })
 
-  return ['{', ...lines, `${getIndent(depth - 1)}  }`].join('\n')
+  return [
+    '{',
+    ...lines,
+    `${getBracketIndent(depth + 1)}}`,
+  ].join('\n')
 }
 
 export default iter
