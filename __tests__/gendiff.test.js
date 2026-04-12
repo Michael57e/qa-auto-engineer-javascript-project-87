@@ -11,16 +11,10 @@ const readFile = filename =>
 const expectedStylish = readFile('expected-stylish.txt')
 const expectedPlain = readFile('expected-plain.txt')
 const expectedJson = readFile('expected-json.txt')
+const expectedNestedStylish = readFile('expected-nested-stylish.txt')
 
 describe('gendiff', () => {
   const formats = ['json', 'yml', 'yaml']
-
-  test.each(formats)('compare %s files with default formatter', (format) => {
-    const file1 = getFixturePath(`file1.${format}`)
-    const file2 = getFixturePath(`file2.${format}`)
-
-    expect(genDiff(file1, file2)).toEqual(expectedStylish)
-  })
 
   test.each(formats)('compare %s files with stylish formatter', (format) => {
     const file1 = getFixturePath(`file1.${format}`)
@@ -41,6 +35,15 @@ describe('gendiff', () => {
     const file2 = getFixturePath(`file2.${format}`)
 
     expect(genDiff(file1, file2, 'json')).toEqual(expectedJson)
+  })
+
+  test('default formatter equals stylish', () => {
+    const file1 = getFixturePath('file1.json')
+    const file2 = getFixturePath('file2.json')
+
+    expect(genDiff(file1, file2)).toEqual(
+      genDiff(file1, file2, 'stylish'),
+    )
   })
 })
 
@@ -64,5 +67,6 @@ test('stylish formatter with nested objects', () => {
   const nested1 = getFixturePath('nested1.json')
   const nested2 = getFixturePath('nested2.json')
 
-  expect(genDiff(nested1, nested2)).toBeDefined()
+  expect(genDiff(nested1, nested2))
+    .toEqual(expectedNestedStylish)
 })

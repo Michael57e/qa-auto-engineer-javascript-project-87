@@ -1,23 +1,35 @@
-{
-  "follow": {
-    "type": "removed",
-    "value": false
+[
+  {
+    "type": "nested",
+    "key": "common",
+    "children": [
+      {
+        "type": "unchanged",
+        "key": "setting1",
+        "value": "Value 1"
+      },
+      {
+        "type": "removed",
+        "key": "setting2",
+        "value": 200
+      },
+      {
+        "type": "added",
+        "key": "setting3",
+        "value": true
+      }
+    ]
   },
-  "host": {
-    "type": "unchanged",
-    "value": "hexlet.io"
-  },
-  "proxy": {
-    "type": "removed",
-    "value": "123.234.53.22"
-  },
-  "timeout": {
-    "type": "changed",
-    "oldValue": 50,
-    "newValue": 20
-  },
-  "verbose": {
-    "type": "added",
-    "value": true
+  {
+    "type": "nested",
+    "key": "group1",
+    "children": [
+      {
+        "type": "changed",
+        "key": "baz",
+        "oldValue": "bas",
+        "newValue": "bars"
+      }
+    ]
   }
-}
+]
