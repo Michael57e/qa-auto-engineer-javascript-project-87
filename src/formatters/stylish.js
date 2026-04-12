@@ -1,35 +1,46 @@
-const indent = '  '
+const getIndent = (depth, symbol = ' ', spacesCount = 4) =>
+  symbol.repeat(depth * spacesCount - 2)
 
-const stringify = (value) => {
+const stringify = (value, depth) => {
   if (value !== null && typeof value === 'object') {
-    const entries = Object.entries(value)
-      .map(([key, val]) => `${indent}${indent}${key}: ${stringify(val)}`)
-      .join('\n')
-    return `{\n${entries}\n${indent}}`
+    const lines = Object.entries(value).map(
+      ([key, val]) =>
+        `${getIndent(depth + 1)}  ${key}: ${stringify(val, depth + 1)}`,
+    )
+
+    return ['{', ...lines, `${getIndent(depth)}  }`].join('\n')
   }
+
   return String(value)
 }
 
-const stylish = (diff) => {
-  const lines = Object.entries(diff).map(([key, node]) => {
+const iter = (nodes, depth = 1) => {
+  const lines = nodes.flatMap((node) => {
     switch (node.type) {
       case 'added':
-        return `${indent}+ ${key}: ${stringify(node.value)}`
+        return `${getIndent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`
+
       case 'removed':
-        return `${indent}- ${key}: ${stringify(node.value)}`
+        return `${getIndent(depth)}- ${node.key}: ${stringify(node.value, depth)}`
+
       case 'unchanged':
-        return `${indent}  ${key}: ${stringify(node.value)}`
+        return `${getIndent(depth)}  ${node.key}: ${stringify(node.value, depth)}`
+
       case 'changed':
         return [
-          `${indent}- ${key}: ${stringify(node.oldValue)}`,
-          `${indent}+ ${key}: ${stringify(node.newValue)}`,
-        ].join('\n')
+          `${getIndent(depth)}- ${node.key}: ${stringify(node.oldValue, depth)}`,
+          `${getIndent(depth)}+ ${node.key}: ${stringify(node.newValue, depth)}`,
+        ]
+
+      case 'nested':
+        return `${getIndent(depth)}  ${node.key}: ${iter(node.children, depth + 1)}`
+
       default:
-        return ''
+        throw new Error(`Unknown type: ${node.type}`)
     }
   })
 
-  return `{\n${lines.join('\n')}\n}`
+  return ['{', ...lines, `${getIndent(depth - 1)}  }`].join('\n')
 }
 
-export default stylish
+export default iter
