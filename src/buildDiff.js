@@ -1,49 +1,49 @@
-const isObject = value =>
+const isObject = (value) =>
   value !== null && typeof value === 'object' && !Array.isArray(value)
 
-export default function buildDiff(obj1, obj2) {
+export default function buildDiff(data1, data2) {
   const keys = Array.from(
-    new Set([...Object.keys(obj1), ...Object.keys(obj2)]),
+    new Set([...Object.keys(data1), ...Object.keys(data2)]),
   ).sort((a, b) => a.localeCompare(b))
 
   return keys.map((key) => {
-    if (!Object.hasOwn(obj2, key)) {
+    if (!Object.hasOwn(data2, key)) {
       return {
         type: 'removed',
         key,
-        value: obj1[key],
+        value: data1[key],
       }
     }
 
-    if (!Object.hasOwn(obj1, key)) {
+    if (!Object.hasOwn(data1, key)) {
       return {
         type: 'added',
         key,
-        value: obj2[key],
+        value: data2[key],
       }
     }
 
-    if (isObject(obj1[key]) && isObject(obj2[key])) {
+    if (isObject(data1[key]) && isObject(data2[key])) {
       return {
         type: 'nested',
         key,
-        children: buildDiff(obj1[key], obj2[key]),
+        children: buildDiff(data1[key], data2[key]),
       }
     }
 
-    if (obj1[key] === obj2[key]) {
+    if (data1[key] === data2[key]) {
       return {
         type: 'unchanged',
         key,
-        value: obj1[key],
+        value: data1[key],
       }
     }
 
     return {
       type: 'changed',
       key,
-      oldValue: obj1[key],
-      newValue: obj2[key],
+      value1: data1[key],
+      value2: data2[key],
     }
   })
 }

@@ -10,7 +10,7 @@ const stringify = (value) => {
   return String(value)
 }
 
-const plain = (diff, parent = '') => {
+const formatPlain = (diff, parent = '') => {
   const lines = diff.flatMap((node) => {
     const property = parent ? `${parent}.${node.key}` : node.key
 
@@ -22,10 +22,10 @@ const plain = (diff, parent = '') => {
         return `Property '${property}' was removed`
 
       case 'changed':
-        return `Property '${property}' was updated. From ${stringify(node.oldValue)} to ${stringify(node.newValue)}`
+        return `Property '${property}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`
 
       case 'nested':
-        return plain(node.children, property)
+        return formatPlain(node.children, property)
 
       default:
         return []
@@ -35,4 +35,4 @@ const plain = (diff, parent = '') => {
   return lines.join('\n')
 }
 
-export default plain
+export default formatPlain

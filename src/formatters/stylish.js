@@ -1,8 +1,10 @@
 const spacesCount = 4
 const indentSize = spacesCount - 2
 
-const getIndent = depth => ' '.repeat(depth * spacesCount - indentSize)
-const getBracketIndent = depth => ' '.repeat(depth * spacesCount - spacesCount)
+const getIndent = (depth) => ' '.repeat(depth * spacesCount - indentSize)
+
+const getBracketIndent = (depth) =>
+  ' '.repeat(depth * spacesCount - spacesCount)
 
 const stringify = (value, depth) => {
   if (value === null || typeof value !== 'object') {
@@ -21,7 +23,7 @@ const stringify = (value, depth) => {
   ].join('\n')
 }
 
-const iter = (nodes, depth = 1) => {
+const formatStylish = (nodes, depth = 1) => {
   const lines = nodes.flatMap((node) => {
     switch (node.type) {
       case 'added':
@@ -35,12 +37,12 @@ const iter = (nodes, depth = 1) => {
 
       case 'changed':
         return [
-          `${getIndent(depth)}- ${node.key}: ${stringify(node.oldValue, depth)}`,
-          `${getIndent(depth)}+ ${node.key}: ${stringify(node.newValue, depth)}`,
+          `${getIndent(depth)}- ${node.key}: ${stringify(node.value1, depth)}`,
+          `${getIndent(depth)}+ ${node.key}: ${stringify(node.value2, depth)}`,
         ]
 
       case 'nested':
-        return `${getIndent(depth)}  ${node.key}: ${iter(node.children, depth + 1)}`
+        return `${getIndent(depth)}  ${node.key}: ${formatStylish(node.children, depth + 1)}`
 
       default:
         throw new Error(`Unknown type: ${node.type}`)
@@ -54,4 +56,4 @@ const iter = (nodes, depth = 1) => {
   ].join('\n')
 }
 
-export default iter
+export default formatStylish
