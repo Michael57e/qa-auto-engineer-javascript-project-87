@@ -1,9 +1,9 @@
 const spacesCount = 4
 const indentSize = spacesCount - 2
 
-const getIndent = (depth) => ' '.repeat(depth * spacesCount - indentSize)
+const getIndent = depth => ' '.repeat(depth * spacesCount - indentSize)
 
-const getBracketIndent = (depth) =>
+const getBracketIndent = depth =>
   ' '.repeat(depth * spacesCount - spacesCount)
 
 const stringify = (value, depth) => {
