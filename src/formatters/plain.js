@@ -1,4 +1,4 @@
-const stringify = (value) => {
+const stringify = value => {
   if (typeof value === 'object' && value !== null) {
     return '[complex value]'
   }
